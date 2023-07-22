@@ -5,6 +5,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -49,13 +50,6 @@ public class PriceComparison extends TestBase {
                 searchedProduct1URL = driver.findElement(By.xpath("(//span[contains(text(),'"+prop.getProperty("searchKeyword")+"')])["+i+"]/parent::div/parent::a")).getAttribute("href");
                 itemDetailsItems.add(new itemDetails(prop.getProperty("URL1"),searchedProduct1Name,firstUrlPriceConverted,searchedProduct1URL));
             }
-        }
-        for (itemDetails item : itemDetailsItems) {
-            System.out.println("Website URL: "+item.getWebsiteURL());
-            System.out.println("Product Name: "+item.getProdName());
-            System.out.println("Product Price: "+item.getProdPrice());
-            System.out.println("Product Link: "+item.getProdLink());
-            System.out.println("=============================================================================");
         }
     }
 
@@ -117,6 +111,9 @@ public class PriceComparison extends TestBase {
                 }
             }
         }
+    }
+    public void resultsComparison(){
+        itemDetailsItems.sort(Comparator.comparingDouble(itemDetails::getProdPrice));
         for (itemDetails item : itemDetailsItems) {
             System.out.println("Website URL: "+item.getWebsiteURL());
             System.out.println("Product Name: "+item.getProdName());

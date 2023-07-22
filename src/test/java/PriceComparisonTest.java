@@ -6,6 +6,7 @@ public class PriceComparisonTest extends TestBase {
             setUp();
             priceComparison.firstURLExecution();
             priceComparison.secondURLExecution();
+            priceComparison.resultsComparison();
             priceComparison.afterMethod();
 
         }catch (Exception e){
